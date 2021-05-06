@@ -92,32 +92,179 @@ void MyKeyBoard( unsigned char key, int x, int y) {
 	switch (key){
 		case '1':
 			ResetValues();
-			line1_x1_point = 10.0f;
-			line1_y1_point = 10.0f;
+			line1_x1_point = 279.0f;
+			line1_y1_point = height-119.0f;
+			
+			line1_x2_point = 368.0f;
+			line1_y2_point = height-63.0f;
+			
+			line2_x1_point = 368.0f;
+			line2_y1_point = height-63.0f;
+			
+			line2_x2_point = 368.0f;
+			line2_y2_point = height-416.0f;
 			MyDisplay();
 			break;
 		case '2':
 			ResetValues();
+			line1_x1_point = 217.0f;
+			line1_y1_point = height-62.0f;
+			
+			line1_x2_point = 422.0f;
+			line1_y2_point = height-62.0f;
+			
+			line2_x1_point = 422.0f;
+			line2_y1_point = height-62.0f;
+			
+			line2_x2_point = 422.0f;
+			line2_y2_point = height-240.0f;
+			
+			line3_x1_point = 422.0f;
+			line3_y1_point = height-240.0f;
+			
+			line3_x2_point = 228.0f;
+			line3_y2_point = height-240.0f;
+			
+			line4_x1_point = 228.0f;
+			line4_y1_point = height-240.0f;
+			
+			line4_x2_point = 228.0f;
+			line4_y2_point = height-417.0f;
+			
+			line5_x1_point = 228.0f;
+			line5_y1_point = height-417.0f;
+			
+			line5_x2_point = 422.0f;
+			line5_y2_point = height-417.0f;
 			MyDisplay();
 			break;
 		case '3':
 			ResetValues();
+			line1_x1_point = 417.0f;
+			line1_y1_point = height-63.0f;
+			
+			line1_x2_point = 417.0f;
+			line1_y2_point = height-416.0f;
+			
+			line2_x1_point = 223.0f;
+			line2_y1_point = height-63.0f;
+			
+			line2_x2_point = 417.0f;
+			line2_y2_point = height-63.0f;
+			
+			line3_x1_point = 223.0f;
+			line3_y1_point = height-240.0f;
+			
+			line3_x2_point = 417.0f;
+			line3_y2_point = height-240.0f;
+			
+			line4_x1_point = 233.0f;
+			line4_y1_point = height-417.0f;
+			
+			line4_x2_point = 417.0f;
+			line4_y2_point = height-417.0f;
 			MyDisplay();
 			break;
 		case '4':
 			ResetValues();
+			line1_x1_point = 423.0f;
+			line1_y1_point = height-63.0f;
+			
+			line1_x2_point = 423.0f;
+			line1_y2_point = height-416.0f;
+			
+			line2_x1_point = 216.0f;
+			line2_y1_point = height-63.0f;
+			
+			line2_x2_point = 216.0f;
+			line2_y2_point = height-240.0f;
+			
+			line3_x1_point = 216.0f;
+			line3_y1_point = height-240.0f;
+			
+			line3_x2_point = 423.0f;
+			line3_y2_point = height-240.0f;
 			MyDisplay();
 			break;
 		case '5':
 			ResetValues();
+			line1_x1_point = 410.0f;
+			line1_y1_point = height-63.0f;
+			
+			line1_x2_point = 229.0f;
+			line1_y2_point = height-63.0f;
+			
+			line2_x1_point = 229.0f;
+			line2_y1_point = height-63.0f;
+			
+			line2_x2_point = 229.0f;
+			line2_y2_point = height-240.0f;
+			
+			line3_x1_point = 229.0f;
+			line3_y1_point = height-240.0f;
+			
+			line3_x2_point = 410.0f;
+			line3_y2_point = height-240.0f;
+			
+			line4_x1_point = 411.0f;
+			line4_y1_point = height-240.0f;
+			
+			line4_x2_point = 411.0f;
+			line4_y2_point = height-417.0f;
+			
+			line5_x1_point = 411.0f;
+			line5_y1_point = height-417.0f;
+			
+			line5_x2_point = 229.0f;
+			line5_y2_point = height-417.0f;
 			MyDisplay();
 			break;
 		case '6':
 			ResetValues();
+			line1_x1_point = 418.0f;
+			line1_y1_point = height-63.0f;
+			
+			line1_x2_point = 221.0f;
+			line1_y2_point = height-63.0f;
+			
+			line2_x1_point = 221.0f;
+			line2_y1_point = height-63.0f;
+			
+			line2_x2_point = 221.0f;
+			line2_y2_point = height-417.0f;
+			
+			line3_x1_point = 221.0f;
+			line3_y1_point = height-417.0f;
+			
+			line3_x2_point = 418.0f;
+			line3_y2_point = height-417.0f;
+			
+			line4_x1_point = 418.0f;
+			line4_y1_point = height-417.0f;
+			
+			line4_x2_point = 418.0f;
+			line4_y2_point = height-240.0f;
+			
+			line5_x1_point = 418.0f;
+			line5_y1_point = height-240.0f;
+			
+			line5_x2_point = 221.0f;
+			line5_y2_point = height-240.0f;
 			MyDisplay();
 			break;
 		case '7':
 			ResetValues();
+			line1_x1_point = 205.0f;
+			line1_y1_point = height-63.0f;
+			
+			line1_x2_point = 434.0f;
+			line1_y2_point = height-63.0f;
+			
+			line2_x1_point = 434.0f;
+			line2_y1_point = height-63.0f;
+			
+			line2_x2_point = 267.0f;
+			line2_y2_point = height-416.0f;
 			MyDisplay();
 			break;
 		case '8':
@@ -130,6 +277,29 @@ void MyKeyBoard( unsigned char key, int x, int y) {
 			break;
 		case '0':
 			ResetValues();
+			line1_x1_point = 196.0f;
+			line1_y1_point = height-63.0f;
+			
+			line1_x2_point = 443.0f;
+			line1_y2_point = height-63.0f;
+			
+			line2_x1_point = 443.0f;
+			line2_y1_point = height-63.0f;
+			
+			line2_x2_point = 443.0f;
+			line2_y2_point = height-416.0f;
+			
+			line3_x1_point = 443.0f;
+			line3_y1_point = height-416.0f;
+			
+			line3_x2_point = 196.0f;
+			line3_y2_point = height-416.0f;
+			
+			line4_x1_point = 196.0f;
+			line4_y1_point = height-416.0f;
+			
+			line4_x2_point = 196.0f;
+			line4_y2_point = height-63.0f;
 			MyDisplay();
 			break;
 		case 'a':

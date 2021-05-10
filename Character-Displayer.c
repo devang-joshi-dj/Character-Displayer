@@ -783,7 +783,7 @@ void MyLines() {
 void MyDisplay(void) {
 	glClear( GL_COLOR_BUFFER_BIT );
 	
-	glColor3ub(0,0,0);
+	glColor3ub(rand()%255,rand()%255,rand()%255);
 	
 	glBegin( GL_LINES );
 	

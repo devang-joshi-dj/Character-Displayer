@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include<GL/gl.h>
 #include<GL/glu.h>
 #include<GL/glut.h>
@@ -16,12 +17,20 @@ typedef struct {
 	float y2_point;
 } coordinates;
 
+void init();
+void ResetValues(void);
+void MyLine(float x1_point, float y1_point, float x2_point, float y2_point);
+void MyLines(void);
+void MyDisplay(void);
+void MyKeyBoard(unsigned char key, int x, int y);
+
 // for start message visibility
 int is_start_msg_seen = 0;
 
 // for characters
 coordinates character[CHARACTER_LINES] = {0};
 
+// for start message
 coordinates start_message[] = {
 	// for letter P
 	{32.0f, height - 110.0f, 32.0f, height - 200.0f},
@@ -87,7 +96,25 @@ coordinates start_message[] = {
 	{412.0f, height - 279.0f, 386.0f, height - 324.0f},
 	{386.0f, height - 324.0f, 386.0f, height - 369.0f},
 };
-const size_t start_message_len = sizeof(start_message) / sizeof(start_message[0]);
+const size_t START_MESSAGE_LEN = sizeof(start_message) / sizeof(start_message[0]);
+
+int main(int argc, char  *  * argv) {
+	glutInit(&argc, argv);
+	glutInitDisplayMode( GLUT_SINGLE | GLUT_RGB );
+
+	glutInitWindowSize(width,height);
+	glutInitWindowPosition(500,100);
+
+	glutCreateWindow("Character Displayer");
+
+	init();
+
+	glutDisplayFunc(MyDisplay);
+	glutKeyboardFunc(MyKeyBoard);
+
+	glutMainLoop();
+	return EXIT_SUCCESS;
+}
 
 void init() {
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
@@ -99,13 +126,13 @@ void init() {
 }
 
 // function to reset coordinates of characters so they won't be visible
-void ResetValues() {
+void ResetValues(void) {
 	for (int i = 0; i < CHARACTER_LINES; i++) {
 		character[i] = (coordinates){0};
 	}
 
 	if (!is_start_msg_seen) {
-		for (size_t i = 0; i < start_message_len; i++) {
+		for (size_t i = 0; i < START_MESSAGE_LEN; i++) {
 			start_message[i] = (coordinates){0};
 		}
 		is_start_msg_seen = 1;
@@ -119,7 +146,7 @@ void MyLine(float x1_point, float y1_point, float x2_point, float y2_point) {
 }
 
 // function to initialize many lines to create characters
-void MyLines() {
+void MyLines(void) {
 	// for characters
 	for (int i = 0; i < CHARACTER_LINES; i++) {
 		MyLine(
@@ -131,7 +158,7 @@ void MyLines() {
 	}
 
 	// for start message
-	for (size_t i = 0; i < start_message_len; i++) {
+	for (size_t i = 0; i < START_MESSAGE_LEN; i++) {
 		MyLine(
 			start_message[i].x1_point,
 			start_message[i].y1_point,
@@ -142,10 +169,8 @@ void MyLines() {
 }
 
 void MyDisplay(void) {
-	glClear( GL_COLOR_BUFFER_BIT );
-
-	glColor3ub(rand() % 255,rand() % 255,rand() % 255);
-
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor3ub(rand() % 255, rand() % 255, rand() % 255);
 	glBegin(GL_LINES);
 
 	MyLines();
@@ -220,9 +245,9 @@ void MyKeyBoard(unsigned char key, int x, int y) {
 			break;
 		case 'a':
 		case 'A':
-			character[0] = (coordinates){205.0f, height - 416.0f, width / 2, height - 63.0f};
-			character[1] = (coordinates){width / 2, height - 63.0f, 434.0f, height - 416.0f};
-			character[2] = (coordinates){262.0f, height / 2, 377.0f, height / 2};
+			character[0] = (coordinates){205.0f, height - 416.0f, width / 2.0f, height - 63.0f};
+			character[1] = (coordinates){width / 2.0f, height - 63.0f, 434.0f, height - 416.0f};
+			character[2] = (coordinates){262.0f, height / 2.0f, 377.0f, height / 2.0f};
 			break;
 		case 'b':
 		case 'B':
@@ -249,14 +274,14 @@ void MyKeyBoard(unsigned char key, int x, int y) {
 		case 'E':
 			character[0] = (coordinates){220.0f, height - 63.0f, 220.0f, height - 416.0f};
 			character[1] = (coordinates){220.0f, height - 63.0f, 420.0f, height - 63.0f};
-			character[2] = (coordinates){220.0f, height / 2, 420.0f, height / 2};
+			character[2] = (coordinates){220.0f, height / 2.0f, 420.0f, height / 2.0f};
 			character[3] = (coordinates){220.0f, height - 416.0f, 420.0f, height - 416.0f};
 			break;
 		case 'f':
 		case 'F':
 			character[0] = (coordinates){220.0f, height - 63.0f, 220.0f, height - 416.0f};
 			character[1] = (coordinates){220.0f, height - 63.0f, 420.0f, height - 63.0f};
-			character[2] = (coordinates){220.0f, height / 2, 420.0f, height / 2};
+			character[2] = (coordinates){220.0f, height / 2.0f, 420.0f, height / 2.0f};
 			break;
 		case 'g':
 		case 'G':
@@ -264,7 +289,7 @@ void MyKeyBoard(unsigned char key, int x, int y) {
 			character[1] = (coordinates){221.0f, height - 63.0f, 221.0f, height - 417.0f};
 			character[2] = (coordinates){221.0f, height - 417.0f, 418.0f, height - 417.0f};
 			character[3] = (coordinates){418.0f, height - 417.0f, 418.0f, height - 240.0f};
-			character[4] = (coordinates){418.0f, height - 240.0f, width / 2, height - 240.0f};
+			character[4] = (coordinates){418.0f, height - 240.0f, width / 2.0f, height - 240.0f};
 			break;
 		case 'h':
 		case 'H':
@@ -275,7 +300,7 @@ void MyKeyBoard(unsigned char key, int x, int y) {
 		case 'i':
 		case 'I':
 			character[0] = (coordinates){196.0f, height - 63.0f, 443.0f, height - 63.0f};
-			character[1] = (coordinates){width / 2, height - 63.0f, width / 2, height - 416.0f};
+			character[1] = (coordinates){width / 2.0f, height - 63.0f, width / 2.0f, height - 416.0f};
 			character[2] = (coordinates){443.0f, height - 416.0f, 196.0f, height - 416.0f};
 			break;
 		case 'j':
@@ -297,10 +322,10 @@ void MyKeyBoard(unsigned char key, int x, int y) {
 			break;
 		case 'm':
 		case 'M':
-			character[0] = (coordinates){1 * width / 5, height - 416.0f, 1 * width / 5, height - 63.0f};
-			character[1] = (coordinates){1 * width / 5, height - 63.0f, width / 2, height - 416.0f};
-			character[2] = (coordinates){width / 2, height - 416.0f, 4 * width / 5, height - 63.0f};
-			character[3] = (coordinates){4 * width / 5, height - 63.0f, 4 * width / 5, height - 416.0f};
+			character[0] = (coordinates){1.0f * width / 5, height - 416.0f, 1.0f * width / 5, height - 63.0f};
+			character[1] = (coordinates){1.0f * width / 5, height - 63.0f, width / 2.0f, height - 416.0f};
+			character[2] = (coordinates){width / 2.0f, height - 416.0f, 4.0f * width / 5, height - 63.0f};
+			character[3] = (coordinates){4.0f * width / 5, height - 63.0f, 4.0f * width / 5, height - 416.0f};
 			break;
 		case 'n':
 		case 'N':
@@ -348,8 +373,8 @@ void MyKeyBoard(unsigned char key, int x, int y) {
 			break;
 		case 't':
 		case 'T':
-			character[0] = (coordinates){width / 4, height - 63.0f, 3 * width / 4, height - 63.0f};
-			character[1] = (coordinates){width / 2, height - 63.0f, width / 2, height - 416.0f};
+			character[0] = (coordinates){width / 4.0f, height - 63.0f, 3.0f * width / 4, height - 63.0f};
+			character[1] = (coordinates){width / 2.0f, height - 63.0f, width / 2.0f, height - 416.0f};
 			break;
 		case 'u':
 		case 'U':
@@ -359,26 +384,26 @@ void MyKeyBoard(unsigned char key, int x, int y) {
 			break;
 		case 'v':
 		case 'V':
-			character[0] = (coordinates){205.0f, height - 63.0f, width / 2, height - 416.0f};
-			character[1] = (coordinates){width / 2, height - 416.0f, 434.0f, height - 63.0f};
+			character[0] = (coordinates){205.0f, height - 63.0f, width / 2.0f, height - 416.0f};
+			character[1] = (coordinates){width / 2.0f, height - 416.0f, 434.0f, height - 63.0f};
 			break;
 		case 'w':
 		case 'W':
-			character[0] = (coordinates){1 * width / 5, height - 63.0f, 2 * width / 5, height - 416.0f};
-			character[1] = (coordinates){2 * width / 5, height - 416.0f, width / 2, height - 63.0f};
-			character[2] = (coordinates){width / 2, height - 63.0f, 3 * width / 5, height - 416.0f};
-			character[3] = (coordinates){3 * width / 5, height - 416.0f, 4 * width / 5, height - 63.0f};
+			character[0] = (coordinates){1.0f * width / 5, height - 63.0f, 2.0f * width / 5, height - 416.0f};
+			character[1] = (coordinates){2.0f * width / 5, height - 416.0f, width / 2.0f, height - 63.0f};
+			character[2] = (coordinates){width / 2.0f, height - 63.0f, 3.0f * width / 5, height - 416.0f};
+			character[3] = (coordinates){3.0f * width / 5, height - 416.0f, 4.0f * width / 5, height - 63.0f};
 			break;
 		case 'x':
 		case 'X':
-			character[0] = (coordinates){width / 4, height - 63.0f, 3 * width / 4, height - 416.0f};
-			character[1] = (coordinates){3 * width / 4, height - 63.0f, width / 4, height - 416.0f};
+			character[0] = (coordinates){width / 4.0f, height - 63.0f, 3 * width / 4, height - 416.0f};
+			character[1] = (coordinates){3.0f * width / 4, height - 63.0f, width / 4.0f, height - 416.0f};
 			break;
 		case 'y':
 		case 'Y':
-			character[0] = (coordinates){210.0f, height - 63.0f, width / 2, height / 2};
-			character[1] = (coordinates){430.0f, height - 63.0f, width / 2, height / 2};
-			character[2] = (coordinates){width / 2, height / 2, width / 2, height - 416.0f};
+			character[0] = (coordinates){210.0f, height - 63.0f, width / 2.0f, height / 2.0f};
+			character[1] = (coordinates){430.0f, height - 63.0f, width / 2.0f, height / 2.0f};
+			character[2] = (coordinates){width / 2.0f, height / 2.0f, width / 2.0f, height - 416.0f};
 			break;
 		case 'z':
 		case 'Z':
@@ -390,22 +415,4 @@ void MyKeyBoard(unsigned char key, int x, int y) {
 			break;
 	}
 	MyDisplay();
-}
-
-int main(int argc, char  *  * argv) {
-	glutInit(&argc, argv);
-	glutInitDisplayMode( GLUT_SINGLE | GLUT_RGB );
-
-	glutInitWindowSize(width,height);
-	glutInitWindowPosition(500,100);
-
-	glutCreateWindow("Character Displayer");
-
-	init();
-
-	glutDisplayFunc(MyDisplay);
-	glutKeyboardFunc(MyKeyBoard);
-
-	glutMainLoop();
-	return EXIT_SUCCESS;
 }

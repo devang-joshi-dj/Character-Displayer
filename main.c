@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <time.h>
 #include<GL/gl.h>
 #include<GL/glu.h>
 #include<GL/glut.h>
@@ -17,12 +18,16 @@ void ResetValues(void);
 void MyLine(float x1_point, float y1_point, float x2_point, float y2_point);
 void MyLines(void);
 void MyDisplay(void);
-int getRandomColor(void);
+unsigned char getRandomColor(void);
 void MyKeyBoard(unsigned char key, int x, int y);
 
 // width and height of the window
 const int W_WIDTH = 640;
 const int W_HEIGHT = 480;
+
+unsigned char red = 0;
+unsigned char green = 0;
+unsigned char blue = 0;
 
 // for start message visibility
 int is_start_msg_seen = 0;
@@ -99,6 +104,8 @@ coordinates start_message[] = {
 const size_t START_MESSAGE_LEN = sizeof(start_message) / sizeof(start_message[0]);
 
 int main(int argc, char  **argv) {
+	srand((unsigned)time(NULL));
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode( GLUT_SINGLE | GLUT_RGB );
 
@@ -127,7 +134,7 @@ void init() {
 
 // function to reset coordinates of characters so they won't be visible
 void ResetValues(void) {
-	for (int i = 0; i < CHARACTER_LINES; i++) {
+	for (size_t i = 0; i < CHARACTER_LINES; i++) {
 		character[i] = (coordinates){0};
 	}
 
@@ -139,13 +146,13 @@ void ResetValues(void) {
 	}
 }
 
-// function to initialize a line
+// function to draw a single line segment
 void MyLine(float x1_point, float y1_point, float x2_point, float y2_point) {
 	glVertex3f(x1_point, y1_point, 0.0f);
 	glVertex3f(x2_point, y2_point, 0.0f);
 }
 
-// function to initialize many lines to create characters
+// function to draw multiple lines to create characters
 void MyLines(void) {
 	// for characters
 	for (int i = 0; i < CHARACTER_LINES; i++) {
@@ -170,22 +177,30 @@ void MyLines(void) {
 
 void MyDisplay(void) {
 	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3ub(getRandomColor(), getRandomColor(), getRandomColor());
+
+	glColor3ub(red, green, blue);
+
 	glBegin(GL_LINES);
-
 	MyLines();
-
 	glEnd();
+
 	glFlush();
 }
 
-int getRandomColor(void) {
-	return rand() % 255;
+unsigned char getRandomColor(void) {
+	return (unsigned char)(rand() % 256);
 }
 
 // function to detect keyboard keys and print the character accordingly
 void MyKeyBoard(unsigned char key, int x, int y) {
+	(void)x; // to suppress unused warnings
+	(void)y; // to suppress unused warnings
+
 	ResetValues();
+
+	red = getRandomColor();
+	green = getRandomColor();
+	blue = getRandomColor();
 
 	switch (key) {
 		case '1':
@@ -420,5 +435,5 @@ void MyKeyBoard(unsigned char key, int x, int y) {
 			break;
 	}
 
-	MyDisplay();
+	glutPostRedisplay();
 }
